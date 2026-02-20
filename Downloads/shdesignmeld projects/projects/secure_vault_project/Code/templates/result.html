@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success - Secure Cloud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mint-primary: #46a882;
+            --mint-dark: #2d6d57;
+            --mint-light: #e8f5e9;
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #fafafa;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --text-muted: #95a5a6;
+            --border-color: #e1e8ed;
+            --hover-bg: #f0f4f8;
+            --error: #e74c3c;
+            --warning: #f39c12;
+            --success: #46a882;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #f0f4f8 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .result-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 64px 48px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- SUCCESS ANIMATION --- */
+        .success-animation {
+            width: 100px;
+            height: 100px;
+            background: var(--mint-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            position: relative;
+            animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--mint-primary);
+            animation: ripple 1.5s infinite;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .check-icon {
+            font-size: 48px;
+            color: var(--mint-primary);
+            z-index: 1;
+            animation: drawCheck 0.8s ease-out 0.2s forwards;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        h1 {
+            color: var(--text-primary);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .stat-box {
+            flex: 1;
+            padding: 24px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--mint-primary);
+            background: var(--mint-light);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-box:nth-child(1) .stat-value {
+            color: var(--mint-primary);
+        }
+
+        .stat-box:nth-child(2) .stat-value {
+            color: var(--warning);
+        }
+
+        .stat-box:nth-child(3) .stat-value {
+            color: var(--error);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--text-muted);
+        }
+
+        /* --- BUTTONS --- */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Ubuntu', sans-serif;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--mint-primary);
+            color: white;
+            border-color: var(--mint-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--mint-dark);
+            border-color: var(--mint-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(70, 168, 130, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover-bg);
+            border-color: var(--text-secondary);
+            transform: translateY(-1px);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 480px) {
+            .result-container {
+                padding: 40px 24px;
+                border-radius: 12px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 32px;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 40px;
+            }
+
+            .stat-box {
+                padding: 20px 16px;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 12px;
+            }
+
+            .success-animation {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 24px;
+            }
+
+            .check-icon {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="success-animation">
+            <span class="check-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+        </div>
+
+        <h1>{{ action }} Complete</h1>
+        <p class="subtitle">Your digital workspace is now neatly organized.</p>
+        
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-value">{{ results.organized }}</div>
+                <div class="stat-label">Organized</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">{{ results.skipped }}</div>
+                <div class="stat-label">Skipped</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">{{ results.errors }}</div>
+                <div class="stat-label">Errors</div>
+            </div>
+        </div>
+        
+        <div class="button-group">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">
+                Return to Dashboard
+            </a>
+            <a href="{{ url_for('organize_files') }}" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                Run Again
+            </a>
+        </div>
+    </div>
+</body>
+</html>
