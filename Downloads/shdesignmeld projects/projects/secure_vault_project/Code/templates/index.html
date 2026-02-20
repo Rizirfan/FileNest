@@ -310,6 +310,104 @@
             overflow-x: auto;
         }
 
+        /* Setup Guide Section */
+        .setup-guide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .setup-guide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .setup-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .setup-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .setup-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .setup-card ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .setup-card li {
+            margin-bottom: 0.8rem;
+        }
+
+        .setup-card code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            display: block;
+            margin: 0.5rem 0 0.5rem 1rem;
+            padding: 0.5rem 1rem;
+            border-left: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .github-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .github-link a {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 0 1rem;
+        }
+
+        .github-link a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .requirements-list {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .requirements-list h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .requirements-list ul {
+            margin-left: 1.5rem;
+        }
+
+        .requirements-list li {
+            margin-bottom: 0.5rem;
+        }
+
         /* Footer */
         footer {
             background: #1a1a1a;
@@ -400,6 +498,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#tech">Tech Stack</a></li>
                 <li><a href="#download">Download</a></li>
+                <li><a href="#setup">Setup Guide</a></li>
                 <li><a href="#installation">Installation</a></li>
             </ul>
         </div>
@@ -510,10 +609,107 @@
         </div>
     </section>
 
+    <!-- Setup Guide Section -->
+    <section class="setup-guide" id="setup">
+        <div class="setup-container">
+            <h2>📚 Quick Setup Guide</h2>
+            
+            <div class="setup-card">
+                <h3>🔗 Get the Project from GitHub</h3>
+                <p>FileNest is an open-source project hosted on GitHub. You can access it anytime:</p>
+                <p style="margin-top: 1rem;"><strong>GitHub Repository:</strong></p>
+                <code>https://github.com/Rizirfan/FileNest.git</code>
+                <div class="github-link">
+                    <a href="https://github.com/Rizirfan/FileNest" target="_blank">⭐ View on GitHub</a>
+                    <a href="https://github.com/Rizirfan/FileNest/fork" target="_blank">🍴 Fork This Project</a>
+                </div>
+            </div>
+
+            <div class="setup-card">
+                <h3>📋 System Requirements</h3>
+                <div class="requirements-list">
+                    <h4>Before you begin, ensure you have:</h4>
+                    <ul>
+                        <li><strong>Python 3.8</strong> or higher installed</li>
+                        <li><strong>pip</strong> (Python package manager)</li>
+                        <li><strong>Git</strong> (optional, for cloning repository)</li>
+                        <li>At least <strong>100MB</strong> of free disk space</li>
+                        <li>Any modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="setup-card">
+                <h3>⚡ Installation Steps (5 minutes)</h3>
+                <ol>
+                    <li>
+                        <strong>Clone the Repository</strong>
+                        <code>git clone https://github.com/Rizirfan/FileNest.git</code>
+                    </li>
+                    <li>
+                        <strong>Navigate to Project Directory</strong>
+                        <code>cd FileNest</code>
+                    </li>
+                    <li>
+                        <strong>Install Dependencies</strong>
+                        <code>pip install -r requirements.txt</code>
+                    </li>
+                    <li>
+                        <strong>Run the Application</strong>
+                        <code>cd Code && python app.py</code>
+                    </li>
+                    <li>
+                        <strong>Open in Browser</strong>
+                        <code>http://localhost:5000</code>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="setup-card">
+                <h3>🔐 Default Credentials</h3>
+                <p>On first login, use these default credentials:</p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                    <li><strong>Username:</strong> admin</li>
+                    <li><strong>Password:</strong> <code style="background: rgba(0, 0, 0, 0.3); padding: 0.2rem 0.5rem; border-radius: 3px;">Irfan@786</code></li>
+                </ul>
+                <p style="margin-top: 1rem; color: #ffe6e6;"><strong>⚠️ Important:</strong> Change the default password immediately after your first login for security.</p>
+            </div>
+
+            <div class="setup-card">
+                <h3>🐛 Troubleshooting</h3>
+                <ul>
+                    <li><strong>Port already in use?</strong> Edit the port in Code/app.py or stop the service using port 5000</li>
+                    <li><strong>Module not found errors?</strong> Ensure all dependencies are installed: <code style="display: inline; background: rgba(0, 0, 0, 0.3); padding: 0.2rem 0.5rem; border-radius: 3px;">pip install --upgrade -r requirements.txt</code></li>
+                    <li><strong>Permission denied on Linux/Mac?</strong> Use <code style="display: inline; background: rgba(0, 0, 0, 0.3); padding: 0.2rem 0.5rem; border-radius: 3px;">python3 app.py</code> instead of <code style="display: inline; background: rgba(0, 0, 0, 0.3); padding: 0.2rem 0.5rem; border-radius: 3px;">python app.py</code></li>
+                    <li><strong>More help?</strong> Check the GitHub issues or create a new one at <a href="https://github.com/Rizirfan/FileNest/issues" target="_blank" style="color: white; text-decoration: underline;">GitHub Issues</a></li>
+                </ul>
+            </div>
+
+            <div class="setup-card">
+                <h3>✨ Features After Setup</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li>📁 <strong>Smart File Organization</strong> - Automatically categorize files</li>
+                    <li>🔒 <strong>Password Protection</strong> - Secure your sensitive files</li>
+                    <li>🎯 <strong>One-Click Organize</strong> - Organize all files instantly</li>
+                    <li>🛡️ <strong>Protected Vault</strong> - Keep files in a secure location</li>
+                    <li>⚡ <strong>Fast Performance</strong> - Lightweight and responsive UI</li>
+                    <li>🎨 <strong>Beautiful Dashboard</strong> - Modern, intuitive interface</li>
+                </ul>
+            </div>
+
+            <div class="github-link" style="margin-top: 3rem;">
+                <p style="margin-bottom: 1rem; font-size: 1.1rem;">Ready to get started? Clone the repository now!</p>
+                <a href="https://github.com/Rizirfan/FileNest" target="_blank" style="background: white; color: #667eea; padding: 15px 40px; font-size: 1.1rem;">
+                    → Visit GitHub Repository
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Installation Guide -->
     <section class="installation" id="installation">
         <div class="container">
-            <h2>Installation Guide</h2>
+            <h2>Detailed Installation Guide</h2>
             <div class="installation-steps">
                 <div class="step">
                     <h4>Step 1: Extract Files</h4>
