@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileNest - Secure File Organizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mint-primary: #46a882;
+            --mint-dark: #2d6d57;
+            --mint-light: #e8f5e9;
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #fafafa;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --text-muted: #95a5a6;
+            --border-color: #e1e8ed;
+            --hover-bg: #f0f4f8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--mint-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--mint-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f5f5 0%, #f0f4f8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn-primary {
+            display: inline-block;
+        }
+
+        /* About Section */
+        .about {
+            width: 100%;
+            padding: 80px 40px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            color: var(--mint-primary);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .tech-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--mint-primary);
+            background: var(--mint-light);
+        }
+
+        .tech-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .tech-item p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Download Section */
+        .download {
+            width: 100%;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, var(--mint-light) 0%, #f0f4f8 100%);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .download-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .github-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .github-box h3 {
+            color: var(--mint-primary);
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 16px;
+        }
+
+        .github-link {
+            background: var(--bg-tertiary);
+            padding: 16px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin: 16px 0;
+            word-break: break-all;
+            border: 1px solid var(--border-color);
+        }
+
+        .github-link code {
+            color: var(--mint-primary);
+            font-weight: 600;
+        }
+
+        /* Developer Section */
+        .developer {
+            width: 100%;
+            padding: 80px 40px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .developer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dev-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .dev-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .dev-card h3 {
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .dev-title {
+            color: var(--mint-primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 16px;
+        }
+
+        .dev-bio {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
+        .dev-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .dev-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--mint-light);
+            color: var(--mint-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: 1px solid var(--mint-primary);
+        }
+
+        .dev-links a:hover {
+            background: var(--mint-primary);
+            color: white;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 14px 32px;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Ubuntu', sans-serif;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            background: var(--mint-primary);
+            color: white;
+            border-color: var(--mint-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--mint-dark);
+            border-color: var(--mint-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(70, 168, 130, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover-bg);
+            border-color: var(--mint-primary);
+            color: var(--mint-primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 32px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 4px 0;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .about, .download, .developer {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 32px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .tech-stack {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
+        
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">
+            🔐 FileNest
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#developer">Developer</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">🔐</div>
+            <h1>FileNest</h1>
+            <p class="hero-subtitle">Secure File Organizer — Intelligent file management solution with password protection and smart categorization</p>
+            <div class="hero-buttons">
+                <a href="https://github.com/Rizirfan/FileNest" target="_blank" class="btn btn-primary" style="margin: 0 auto;">📦 Download on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <h2 class="section-title">About FileNest</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>What is FileNest?</h3>
+                    <p>FileNest is an open-source, secure file organization and management system built with Flask. It provides an intuitive web-based interface for users to automatically organize their files into smart categories while maintaining security through password protection.</p>
+                    <p>Whether you have hundreds of files scattered across your system or need a centralized secure storage for sensitive documents, FileNest makes file management effortless and secure.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--text-primary); font-size: 20px; margin-bottom: 16px; font-weight: 700;">Key Features</h3>
+                    <ul class="features-list">
+                        <li>Smart file categorization (Images, Documents, Videos, etc.)</li>
+                        <li>Password-protected access</li>
+                        <li>Secure file vault for sensitive files</li>
+                        <li>One-click file organization</li>
+                        <li>Automatic naming conflict handling</li>
+                        <li>Modern, intuitive web interface</li>
+                        <li>Open source & fully customizable</li>
+                        <li>Fast & lightweight performance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="download" id="features">
+        <div class="section-container">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <p>Python 3.8+</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🌐</div>
+                    <p>Flask Framework</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <p>HTML5 & CSS3</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">💾</div>
+                    <p>File System API</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download" style="background: linear-gradient(135deg, var(--mint-light) 0%, #f0f4f8 100%);">
+        <div class="download-content">
+            <h2 class="section-title">Get Started</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px; font-size: 16px;">Clone the repository or download from GitHub to get started</p>
+            
+            <div class="github-box">
+                <h3>📥 Clone from GitHub</h3>
+                <div class="github-link">
+                    <code>git clone https://github.com/Rizirfan/FileNest.git</code>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 13px; margin-top: 12px;">Then run: <code style="background: var(--bg-tertiary); padding: 4px 8px; border-radius: 4px; color: var(--mint-primary);">pip install -r requirements.txt && cd Code && python app.py</code></p>
+            </div>
+
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://github.com/Rizirfan/FileNest" target="_blank" class="btn btn-primary">📦 Download on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Section -->
+    <section class="developer" id="developer">
+        <div class="developer-content">
+            <h2 class="section-title">Meet the Developer</h2>
+            <div class="dev-card">
+                <div class="dev-icon">👨‍💻</div>
+                <h3>Rizirfan</h3>
+                <p class="dev-title">Full Stack Developer</p>
+                <p class="dev-bio">Passionate developer focused on creating secure, efficient, and user-friendly applications. FileNest is an open-source project dedicated to helping users organize and protect their files with ease.</p>
+                <div class="dev-links">
+                    <a href="https://github.com/Rizirfan" target="_blank">🔗 GitHub Profile</a>
+                    <a href="https://github.com/Rizirfan/FileNest" target="_blank">⭐ Project Repository</a>
+                    <a href="https://github.com/Rizirfan/FileNest/issues" target="_blank">💬 Get Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>FileNest - Secure File Organizer</p>
+        <p>Open Source Project | Built with ❤️ by Rizirfan</p>
+        <p style="margin-top: 8px; opacity: 0.7; font-size: 12px;">© 2026 All rights reserved. Licensed under MIT</p>
+    </footer>
+</body>
+</html>
