@@ -7,6 +7,12 @@ An open-source, secure file organization and management system built with Flask.
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
+## 📱 Download APK
+
+Get the latest Android build directly from GitHub Releases:
+
+**https://github.com/Rizirfan/FileNest/releases/latest/download/FileNest.apk**
+
 ## 📋 Table of Contents
 
 - [Features](#-features)
@@ -163,33 +169,53 @@ export FLASK_DEBUG=True
 export WATCH_DIR=/path/to/directory
 ```
 
+## 🖥️ Build Desktop Software (Windows .exe)
+
+This project can be packaged as desktop software using `pywebview` + `PyInstaller`.
+
+### Steps
+
+1. Install dependencies:
+   ```powershell
+   pip install -r Downloads\shdesignmeld projects\projects\secure_vault_project\Documents\requirements.txt
+   ```
+2. Build executable:
+   ```powershell
+   cd "Downloads\shdesignmeld projects\projects\secure_vault_project\Code"
+   .\build_windows_exe.ps1
+   ```
+
+### Output
+
+- EXE: `Downloads\shdesignmeld projects\projects\secure_vault_project\Code\dist\FileNest\FileNest.exe`
+
 ## 📁 Project Structure
 
 ```
 FileNest/
-├── Code/
-│   ├── app.py                 # Main Flask application
-│   ├── file_organizer.py      # File organization logic
-│   ├── templates/
-│   │   ├── index.html         # Landing page
-│   │   ├── login.html         # Login page
-│   │   ├── dashboard.html     # Main dashboard
-│   │   ├── change_password.html # Password change page
-│   │   └── result.html        # Result page
-│   └── static/                # Static files (CSS, JS, images)
-├── Documents/
-│   └── requirements.txt       # Python dependencies
+├── Downloads/
+│   └── shdesignmeld projects/projects/secure_vault_project/
+│       ├── Code/
+│       │   ├── app.py                 # Main Flask application
+│       │   ├── desktop_app.py         # Desktop launcher (pywebview)
+│       │   ├── build_windows_exe.ps1  # Windows EXE build script
+│       │   ├── file_organizer.py      # File organization logic
+│       │   └── templates/             # HTML templates
+│       └── Documents/
+│           └── requirements.txt       # Python dependencies
 ├── README.md                  # This file
 └── .gitignore                # Git ignore rules
 ```
 
 ## 📋 Requirements
 
-All dependencies are listed in `Documents/requirements.txt`:
+All dependencies are listed in `Downloads\shdesignmeld projects\projects\secure_vault_project\Documents\requirements.txt`:
 
 ```
-Flask==2.0.0
-Werkzeug==2.0.0
+flask>=2.0.0
+watchdog>=3.0.0
+pywebview>=5.1
+pyinstaller>=6.10.0
 ```
 
 ## 🔒 Security Features

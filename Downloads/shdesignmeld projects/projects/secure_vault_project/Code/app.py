@@ -3,12 +3,18 @@ import os
 import shutil
 import hashlib
 import secrets
+import sys
 from pathlib import Path
 from typing import Dict, List
 import zipfile
 import io
 
-app = Flask(__name__)
+RUNTIME_BASE_DIR = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+app = Flask(
+    __name__,
+    template_folder=str(RUNTIME_BASE_DIR / "templates"),
+    static_folder=str(RUNTIME_BASE_DIR / "static"),
+)
 app.secret_key = secrets.token_hex(32)
 
 # ============================================================
@@ -424,6 +430,12 @@ def download_zip():
 def download_source():
     """Alternative route for downloading source code"""
     return download_zip()
+
+
+@app.route('/download/apk')
+def download_apk():
+    """Redirect to the latest GitHub release APK asset."""
+    return redirect('https://github.com/Rizirfan/FileNest/releases/latest/download/FileNest.apk')
 
 
 # ============================================================
