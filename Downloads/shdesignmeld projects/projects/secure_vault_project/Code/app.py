@@ -434,8 +434,8 @@ def download_source():
 
 @app.route('/download/apk')
 def download_apk():
-    """Redirect to the latest GitHub release APK asset."""
-    return redirect('https://github.com/Rizirfan/FileNest/releases/latest/download/FileNest.apk')
+    """Redirect to the GitHub releases page where APK assets are published."""
+    return redirect('https://github.com/Rizirfan/FileNest/releases')
 
 
 # ============================================================

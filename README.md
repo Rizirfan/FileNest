@@ -9,9 +9,9 @@ An open-source, secure file organization and management system built with Flask.
 
 ## 📱 Download APK
 
-Get the latest Android build directly from GitHub Releases:
+Get the latest Android build from GitHub Releases:
 
-**https://github.com/Rizirfan/FileNest/releases/latest/download/FileNest.apk**
+**https://github.com/Rizirfan/FileNest/releases**
 
 ## 📋 Table of Contents
 
